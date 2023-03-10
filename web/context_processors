@@ -1,0 +1,14 @@
+from api.models import Posts,Comments
+
+
+
+def all_counts(request):
+    if request.user.is_authenticated:
+        pnt = Posts.objects.filter(user = request.user).count()
+        cnt = Comments.objects.filter(user = request.user).count()
+        
+        
+    else:
+        return {'pcnt':0, 'ccnt':0}
+
+    return {'pcnt':pnt, 'ccnt':cnt}
